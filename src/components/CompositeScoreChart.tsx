@@ -42,25 +42,33 @@ export default function CompositeScoreChart() {
     fetchScores();
   }, []);
 
-  if (loading) return <p>Loading chart…</p>;
-  if (scores.length === 0) return <p>No data to display.</p>;
-
   return (
-    <div className="w-full h-32">
-      <ResponsiveContainer>
-        <LineChart data={scores}>
-          <XAxis dataKey="date" hide />
-          <YAxis domain={[0, "auto"]} hide />
-          <Tooltip formatter={(value: number) => `${value}`} />
-          <Line
-            type="monotone"
-            dataKey="score"
-            stroke="currentColor"
-            strokeWidth={2}
-            dot={false}
-          />
-        </LineChart>
-      </ResponsiveContainer>
+    <div className="card bg-base-100 shadow-xl">
+      <div className="card-body">
+        <h3 className="card-title">Last 7 Days</h3>
+        {loading ? (
+          <progress className="progress w-full"></progress>
+        ) : scores.length === 0 ? (
+          <p className="text-gray-500">No data to display.</p>
+        ) : (
+          <div className="w-full h-32">
+            <ResponsiveContainer>
+              <LineChart data={scores}>
+                <XAxis dataKey="date" hide />
+                <YAxis domain={[0, "auto"]} hide />
+                <Tooltip formatter={(value: number) => `${value}`} />
+                <Line
+                  type="monotone"
+                  dataKey="score"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  dot={false}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
