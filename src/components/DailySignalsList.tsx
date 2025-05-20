@@ -12,17 +12,27 @@ export default function DailySignalsList() {
   const [signals, setSignals] = useState<Signal[]>([]);
   const [loading, setLoading] = useState(true);
 
-  async function loadSignals() {
-    setLoading(true);
-    const { data, error } = await supabase
-      .from("daily_signals")
-      .select("signal_name, score, explanation")
-      .eq("user_id", process.env.NEXT_PUBLIC_USER_ID)
-      .eq("date", new Date().toISOString().slice(0, 10))
-      .order("signal_name");
-    if (!error && data) setSignals(data as Signal[]);
-    setLoading(false);
-  }
+async function loadSignals() {
+  setLoading(true);
+  const today = new Date().toISOString().slice(0, 10);
+
+  console.log("Fetching signals for date:", today);
+  console.log("USER_ID:", process.env.NEXT_PUBLIC_USER_ID);
+
+  const { data, error } = await supabase
+    .from("daily_signals")
+    .select("signal_name, score, explanation")
+    .eq("user_id", process.env.NEXT_PUBLIC_USER_ID)
+    .eq("date", today)
+    .order("signal_name");
+
+  console.log("Data returned from Supabase:", data);
+  console.log("Error returned from Supabase:", error);
+
+  if (!error && data) setSignals(data as Signal[]);
+  setLoading(false);
+}
+
 
   useEffect(() => {
     loadSignals();
