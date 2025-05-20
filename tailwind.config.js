@@ -1,14 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/app/**/*.{js,ts,jsx,tsx}",        // your App Router pages/components
-    "./src/components/**/*.{js,ts,jsx,tsx}", // any shared components
+    "./src/app/**/*.{js,ts,jsx,tsx}",
+    "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
   plugins: [
-    require("daisyui"),                      // ← make sure this line is here
-    // ...other plugins
+    require("daisyui"),
   ],
   daisyui: {
-    themes: ["light", "dark", "cupcake"],    // pick whatever themes you like
+    themes: ["light", "dark", "cupcake"], // or whichever you like
   },
 };

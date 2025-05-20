@@ -1,11 +1,17 @@
 /* src/app/globals.css */
 
-/* 1) Inject Tailwind’s layers (including daisyUI) */
+/* 1. Tailwind base (resets + daisyUI base) */
 @tailwind base;
+
+/* 2. Tailwind components (where daisyUI injects its cards, badges, etc.) */
 @tailwind components;
+
+/* 3. Tailwind utilities */
 @tailwind utilities;
 
-/* 2) Your custom CSS */
+/* ———————————— */
+/* Your custom overrides below */
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
