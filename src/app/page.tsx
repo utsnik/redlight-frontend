@@ -6,8 +6,8 @@ import DailySignalsList from "@/components/DailySignalsList";
 import {
   CompositeScoreChart,
   PutCallRatioCard,
-  // DailySignalsListCard, // optional
-} from "@/app/components/RedlightWidgets";
+  // DailySignalsListCard, // ← if you want the daisyUI‐wrapped list instead
+} from "@/components/RedlightWidgets";
 
 export default function HomePage() {
   return (
@@ -21,7 +21,7 @@ export default function HomePage() {
       {/* 3) Put/Call ratio widget */}
       <PutCallRatioCard />
 
-      {/* 4) Today’s signals list */}
+      {/* 4) Today’s signals list (original) */}
       <div>
         <h3 className="text-white text-xl font-semibold mb-2">
           Today's Signals
@@ -29,7 +29,7 @@ export default function HomePage() {
         <DailySignalsList />
       </div>
 
-      {/* 5) Quick daisyUI sanity-check card */}
+      {/* 5) daisyUI sanity-check card */}
       <div className="p-8">
         <div className="card bg-primary text-primary-content shadow-xl">
           <div className="card-body">
