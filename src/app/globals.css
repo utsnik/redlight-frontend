@@ -1,8 +1,11 @@
-/* src/styles/globals.css */
+/* src/app/globals.css */
+
+/* 1) Inject Tailwind’s layers (including daisyUI) */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* 2) Your custom CSS */
 :root {
   --background: #ffffff;
   --foreground: #171717;
