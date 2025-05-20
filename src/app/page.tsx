@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { NextPage } from 'next'
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
+import {
+  LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer
+} from 'recharts'
 import { supabase } from '@/lib/supabaseClient'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -18,21 +20,31 @@ const TodayOverview: NextPage = () => {
   useEffect(() => {
     const fetchScores = async () => {
       setLoading(true)
+
+      // 1) Make sure we have the user
+      const user = supabase.auth.user?.()
+      if (!user) {
+        console.warn('No user logged in, skipping dashboard fetch')
+        setLoading(false)
+        return
+      }
+
+      // 2) Fetch last 7 scores
       const { data, error } = await supabase
         .from<CompositeScore>('composite_scores')
         .select('date,score,label')
-        .eq('user_id', supabase.auth.user()?.id)
+        .eq('user_id', user.id)
         .order('date', { ascending: false })
         .limit(7)
 
       if (error) {
         console.error('Error fetching composite scores:', error)
       } else if (data) {
-        // reverse so oldest first for sparkline
-        setScores(data.reverse())
+        setScores(data.reverse())   // oldest first
       }
       setLoading(false)
     }
+
     fetchScores()
   }, [])
 
