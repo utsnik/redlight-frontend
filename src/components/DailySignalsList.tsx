@@ -1,8 +1,10 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 
 interface Signal {
+  id: string;
   signal_name: string;
   score: number;
   explanation: string;
@@ -12,31 +14,33 @@ export default function DailySignalsList() {
   const [signals, setSignals] = useState<Signal[]>([]);
   const [loading, setLoading] = useState(true);
 
-async function loadSignals() {
-  setLoading(true);
-  const today = new Date().toISOString().slice(0, 10);
+  async function loadSignals() {
+    setLoading(true);
+    const today = new Date().toISOString().slice(0, 10);
 
-  console.log("Fetching signals for date:", today);
-  console.log("USER_ID:", process.env.NEXT_PUBLIC_USER_ID);
+    const { data, error } = await supabase
+      .from("daily_signals")
+      .select("id, signal_name, score, explanation")
+      .eq("user_id", process.env.NEXT_PUBLIC_USER_ID)
+      .eq("date", today)
+      .order("signal_name");
 
-  const { data, error } = await supabase
-    .from("daily_signals")
-    .select("signal_name, score, explanation")
-    .eq("user_id", process.env.NEXT_PUBLIC_USER_ID)
-    .eq("date", today)
-    .order("signal_name");
-
-  console.log("Data returned from Supabase:", data);
-  console.log("Error returned from Supabase:", error);
-
-  if (!error && data) setSignals(data as Signal[]);
-  setLoading(false);
-}
-
+    if (!error && data) {
+      setSignals(data as Signal[]);
+    }
+    setLoading(false);
+  }
 
   useEffect(() => {
     loadSignals();
-    // subscribe to INSERTs if you want real-time
+    // Optionally add real-time subscription:
+    // const subscription = supabase
+    //   .from(`daily_signals:user_id=eq.${process.env.NEXT_PUBLIC_USER_ID}`)
+    //   .on('INSERT', payload => {
+    //     setSignals(prev => [...prev, payload.new as Signal]);
+    //   })
+    //   .subscribe();
+    // return () => void supabase.removeSubscription(subscription);
   }, []);
 
   if (loading) return <p>Loading signals…</p>;
@@ -46,7 +50,7 @@ async function loadSignals() {
     <div className="space-y-2">
       {signals.map((s) => (
         <div
-          key={s.signal_name}
+          key={s.id}
           className="p-4 bg-white/10 rounded-xl backdrop-blur-md flex justify-between items-center"
         >
           <div>
