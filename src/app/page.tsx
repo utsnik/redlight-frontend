@@ -1,3 +1,5 @@
+"use client";              // ← add this
+
 import { useEffect, useState } from 'react'
 import { NextPage } from 'next'
 import {
