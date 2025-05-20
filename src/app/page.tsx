@@ -1,17 +1,12 @@
-// app/page.tsx
-import { Card } from "@/components/Card";
+import CompositeScoreCard from "@/components/CompositeScoreCard";
+import DailySignalsList from "@/components/DailySignalsList";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-black">
-      <Card className="max-w-sm text-center">
-        <h1 className="text-3xl font-bold text-white mb-4">
-          Hello, Redlight!
-        </h1>
-        <p className="text-gray-300">
-          Your sexy dashboard is brewing…
-        </p>
-      </Card>
+    <div className="container mx-auto space-y-8 py-8">
+      <CompositeScoreCard />
+      <h3 className="text-white text-xl font-semibold">Today's Signals</h3>
+      <DailySignalsList />
     </div>
   );
 }
