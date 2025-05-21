@@ -1,7 +1,7 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "@/app/globals.css"; // can be empty
+import React from "react";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -13,37 +13,50 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-theme="redlight">
+    <html lang="en">
       <head>
-        {/* 1) Your compiled Tailwind + DaisyUI CSS */}
-        <link rel="stylesheet" href="/output.css" />
+        {/* 1) Load Tailwind + DaisyUI plugin in the browser */}
+        <script
+          src="https://cdn.tailwindcss.com?plugins=daisyui"
+          defer
+        ></script>
 
-        {/* 2) Inject the Redlight theme variables at runtime */}
-        <style
+        {/* 2) Inject your custom redlight theme */}
+        <script
+          defer
           dangerouslySetInnerHTML={{
             __html: `
-:root[data-theme="redlight"] {
-  --p: 245,158,11;
-  --pc: 31,41,55;
-  --s: 16,185,129;
-  --a: 99,102,241;
-  --n: 17,24,39;
-  --b1: 243,244,246;
-  --info: 59,130,246;
-  --success: 34,197,94;
-  --warning: 249,115,22;
-  --error: 239,68,68;
-}
+              tailwind.config = {
+                daisyui: {
+                  themes: [
+                    {
+                      redlight: {
+                        primary: '#f59e0b',
+                        'primary-content': '#1f2937',
+                        secondary: '#10b981',
+                        accent: '#6366f1',
+                        neutral: '#111827',
+                        'base-100': '#f3f4f6',
+                        info: '#3b82f6',
+                        success: '#22c55e',
+                        warning: '#f97316',
+                        error: '#ef4444',
+                      }
+                    }
+                  ]
+                }
+              }
             `,
           }}
         />
       </head>
       <body
+        data-theme="redlight"
         className={`
           ${geistSans.variable} ${geistMono.variable}
           antialiased
-          bg-base-200
-          text-base-content
+          bg-base-200       /* page background */
+          text-base-content /* text color */
         `}
       >
         {children}
