@@ -1,12 +1,29 @@
+// src/app/page.tsx
 "use client";
+
+import CompositeScoreCard from "@/components/CompositeScoreCard";
+import DailySignalsList from "@/components/DailySignalsList";
+import {
+  CompositeScoreChart,
+  PutCallRatioCard,
+} from "@/components/RedlightWidgets";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-base-200">
-      <div className="card bg-base-100 shadow-xl p-8">
-        <h2 className="card-title text-3xl">DaisyUI Test</h2>
-        <p className="my-4">This should have clear styling.</p>
-        <button className="btn btn-primary">Test Button</button>
+    <div className="container mx-auto space-y-8 py-8">
+      {/* 1) Your original latest composite score card */}
+      <CompositeScoreCard />
+
+      {/* 2) Your 7-day composite score sparkline */}
+      <CompositeScoreChart />
+
+      {/* 3) Your put/call ratio widget */}
+      <PutCallRatioCard />
+
+      {/* 4) Today's signals list */}
+      <div>
+        <h3 className="text-2xl font-semibold mb-2">Today's Signals</h3>
+        <DailySignalsList />
       </div>
     </div>
   );
