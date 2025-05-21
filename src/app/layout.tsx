@@ -20,12 +20,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
           href="/output.css"
         />
-
-        {/* 2) Tailwind Play CDN (v4 browser build) */}
-        <script
-          src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"
-          defer
-        ></script>
       </head>
       <body
         className={`
