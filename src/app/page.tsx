@@ -28,15 +28,15 @@ export default function HomePage() {
       </div>
 
       {/* 5) daisyUI test card */}
-      <div className="p-8">
-        <div className="card bg-primary text-primary-content shadow-xl">
-          <div className="card-body">
-            <h2 className="card-title">daisyUI Loaded!</h2>
-            <p>If this card is styled, you’re good to go.</p>
-            <button className="btn btn-accent mt-4">Test Button</button>
-          </div>
-        </div>
-      </div>
+<div className="p-8">
+  <div className="card bg-base-100 shadow-xl">
+    <div className="card-body">
+      <h2 className="card-title">DaisyUI Test</h2>
+      <p>If this card is styled, you’re all set.</p>
+      <button className="btn btn-accent mt-4">Test Button</button>
     </div>
+  </div>
+</div>
+
   );
 }
