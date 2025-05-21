@@ -1,20 +1,4 @@
 /* src/app/globals.css */
-
-/* 1. Tailwind base (resets + daisyUI base) */
 @tailwind base;
-
-/* 2. Tailwind components (where daisyUI injects its cards, badges, etc.) */
 @tailwind components;
-
-/* 3. Tailwind utilities */
 @tailwind utilities;
-
-/* ————————————————————————
-   Your custom global styles below
-   (don’t override bg-base-100 or text-base-content here) */
-
-/* Example: custom font smoothing */
-html {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
