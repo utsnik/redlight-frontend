@@ -1,10 +1,10 @@
 // src/app/page.tsx
 "use client";
 
-import CompositeScoreCard from "@/components/CompositeScoreCard";
-import CompositeScoreChart from "@/components/CompositeScoreChart";
-import PutCallRatioCard from "@/components/PutCallRatioCard";
-import DailySignalsList from "@/components/DailySignalsList";
+import CompositeScoreCard from "../components/CompositeScoreCard";
+import CompositeScoreChart from "../components/CompositeScoreChart";
+import PutCallRatioCard from "../components/PutCallRatioCard";
+import DailySignalsList from "../components/DailySignalsList";
 
 export default function DashboardPage() {
   return (
