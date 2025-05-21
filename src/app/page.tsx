@@ -1,4 +1,3 @@
-// src/app/page.tsx
 "use client";
 
 import CompositeScoreCard from "@/components/CompositeScoreCard";
@@ -6,13 +5,12 @@ import DailySignalsList from "@/components/DailySignalsList";
 import {
   CompositeScoreChart,
   PutCallRatioCard,
-  // DailySignalsListCard, // ← if you want the daisyUI‐wrapped list instead
 } from "@/components/RedlightWidgets";
 
 export default function HomePage() {
   return (
     <div className="container mx-auto space-y-8 py-8">
-      {/* 1) Your existing “latest score” card */}
+      {/* 1) Existing “latest score” card */}
       <CompositeScoreCard />
 
       {/* 2) 7-day composite score sparkline */}
@@ -21,7 +19,7 @@ export default function HomePage() {
       {/* 3) Put/Call ratio widget */}
       <PutCallRatioCard />
 
-      {/* 4) Today’s signals list (original) */}
+      {/* 4) Today’s signals list */}
       <div>
         <h3 className="text-white text-xl font-semibold mb-2">
           Today's Signals
@@ -29,7 +27,7 @@ export default function HomePage() {
         <DailySignalsList />
       </div>
 
-      {/* 5) daisyUI sanity-check card */}
+      {/* 5) daisyUI test card */}
       <div className="p-8">
         <div className="card bg-primary text-primary-content shadow-xl">
           <div className="card-body">

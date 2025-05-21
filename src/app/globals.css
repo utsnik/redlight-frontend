@@ -9,23 +9,12 @@
 /* 3. Tailwind utilities */
 @tailwind utilities;
 
-/* ———————————— */
-/* Your custom overrides below */
+/* ————————————————————————
+   Your custom global styles below
+   (don’t override bg-base-100 or text-base-content here) */
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Example: custom font smoothing */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
