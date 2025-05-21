@@ -1,7 +1,7 @@
 // postcss.config.js
 module.exports = {
   plugins: {
-    tailwindcss: {},      // ← *this* is the correct key
+    '@tailwindcss/postcss': {},  // ← correct standalone plugin
     autoprefixer: {},     // ← Next.js needs this
   },
 };
