@@ -43,8 +43,8 @@ export default function CompositeScoreChart() {
   }, []);
 
   return (
-    <div className="card bg-base-100 shadow-xl">
-      <div className="card-body">
+    <div className="card bg-base-100 shadow-lg rounded-2xl overflow-hidden">
+      <div className="card-body p-6">
         <h3 className="card-title">Last 7 Days</h3>
         {loading ? (
           <progress className="progress w-full"></progress>

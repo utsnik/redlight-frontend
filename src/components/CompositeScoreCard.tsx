@@ -66,10 +66,11 @@ export default function CompositeScoreCard() {
   };
 
   return (
-    <div className="max-w-sm mx-auto">
+    <div className="max-w-md mx-auto">
       <div className={`
-        p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center
-        ${data ? getBgColor(data.label) : "bg-gray-600"} text-white
+        card bg-primary text-primary-content
+        shadow-2xl rounded-3xl overflow-hidden
+        p-8 flex flex-col items-center justify-center
       `}>
         {loading && <p>Loading...</p>}
         {error   && <p className="text-red-200">{error}</p>}
