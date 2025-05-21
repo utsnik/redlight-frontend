@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* 1) DaisyUI CSS: all the component styles */}
         <link
           rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/daisyui@5/dist/full.css"
+          href="/output.css"
         />
 
         {/* 2) Tailwind Play CDN (v4 browser build) */}
