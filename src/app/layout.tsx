@@ -1,32 +1,26 @@
-// src/app/layout.tsx
+import "./globals.css";  // can be empty now
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "@/app/globals.css";  // you can leave this empty or delete it
+
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Redlight Dashboard",
   description: "Your trading signals at a glance",
 };
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" data-theme="redlight">
       <head>
-        {/* 1) DaisyUI CSS: all the component styles */}
-        <link
-          rel="stylesheet"
-          href="/output.css"
-        />
+        {/* THIS must point to the CSS you build below */}
+        <link rel="stylesheet" href="/output.css" />
       </head>
       <body
         className={`
           ${geistSans.variable} ${geistMono.variable}
-          antialiased
-          bg-base-200        /* subtle page bg */
-          text-base-content  /* theme text color */
+          antialiased bg-base-200 text-base-content
         `}
       >
         {children}
